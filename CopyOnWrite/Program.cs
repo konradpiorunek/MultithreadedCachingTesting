@@ -15,13 +15,45 @@ namespace CopyOnWrite
 
             // todo: Adjust this to your liking which test you want to run. Rebuild and run release version.
 
-            SimpleCaseComparison(seed);
+            OnDemand(seed);
+            //SimpleCaseComparison(seed);
             //NumberOfThreadsComparison(seed);
             //LengthOfObtainComparison(seed);
             //StaticTimeLengthComparison(seed);
             //NumberOfRequestsComparison(seed);
             //NumberOfIpsToObtainComparison(seed);
             //CompareDeviation(seed);
+        }
+        private static void OnDemand(int seed)
+        {
+            Console.WriteLine("OnDemand");
+            var result = TestRunner.RunTestNTimes(
+                seed: seed,
+                numberOfJobs: 10000,
+                threads: 32,
+                maxLengthOfNsLookup: 100,
+                staticLengthOfAQueryWork: 0,
+                numberOfIps: 50,
+                method: 18,
+                nTimes: 1);
+            PrintResults(result);
+
+            var methods = new[] { 13, 15, 18, 20 };
+            var threads = new[] { 4, 8, 16, 32, 64, 128 };
+            foreach (var thread in threads)
+                foreach (var method in methods)
+                {
+                    result = TestRunner.RunTestNTimes(
+                        seed: seed,
+                        numberOfJobs: 1000000,
+                        threads: thread,
+                        maxLengthOfNsLookup: 200,
+                        staticLengthOfAQueryWork: 0,
+                        numberOfIps: 200,
+                        method: method,
+                        nTimes: 5);
+                    PrintResults(result);
+                }
         }
 
         private static void PrintResults(List<string> results)

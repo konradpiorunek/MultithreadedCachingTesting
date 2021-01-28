@@ -47,8 +47,9 @@ namespace CopyOnWrite
                 case 17: return new CachingKeySeparationLockCopyOnWriteRefactored(nsLookup); // Non blocking saturation, blocking value obtain per key
                 case 18: return new CachingKeySeparationLockCopyOnWriteRefactoredOVLO(nsLookup); // Non blocking saturation, blocking value obtain per key
                 case 19: return new CachingKeySeparationLockCopyOnWriteRefactoredOVLOMeasured(nsLookup); // Non blocking saturation, blocking value obtain per key
+                case 20: return new CachingKeySeparationConcurrentDictLazy(nsLookup);
 
-                
+
 
             }
             return null;
