@@ -41,7 +41,7 @@ namespace CopyOnWrite
 
             
             var (variance, standardDeviation, min, max, averageTicks, ticks) = CalculateVariance(resultsStorage);
-            var ticksText = string.Join(',', ticks);
+            var ticksText = "";// string.Join(',', ticks);
 
             var times = resultsStorage.Select(st => st.RunTime).ToArray();
             var timeOfWork = times.Select(t => t.TotalMilliseconds).Sum();

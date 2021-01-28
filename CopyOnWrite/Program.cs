@@ -38,14 +38,14 @@ namespace CopyOnWrite
                 nTimes: 1);
             PrintResults(result);
 
-            var methods = new[] { 13, 15, 18, 20 };
-            var threads = new[] { 4, 8, 16, 32, 64, 128 };
+            var methods = new[] { 13, 15, 18, 20, 21, 22, 23 };
+            var threads = new[] { 32, 64, 128, 256 };
             foreach (var thread in threads)
                 foreach (var method in methods)
                 {
                     result = TestRunner.RunTestNTimes(
                         seed: seed,
-                        numberOfJobs: 1000000,
+                        numberOfJobs: 200000,
                         threads: thread,
                         maxLengthOfNsLookup: 200,
                         staticLengthOfAQueryWork: 0,
